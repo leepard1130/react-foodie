@@ -6,6 +6,7 @@ import classes from './main-header.module.css'
 import logoImage from '@/assets/logo.png';
 import MainHeaderBackground from './main-header-background';
 import { usePathname } from 'next/navigation';
+import NavLink from './nav-link';
 
 
 export default function MainHeader() {
@@ -21,20 +22,10 @@ export default function MainHeader() {
                 <nav className={classes.nav}>
                     <ul>
                         <li>
-                            <Link 
-                                className={path.startsWith('/meals') ? classes.active : undefined}
-                                href="/meals"
-                            >
-                                Meals
-                            </Link>
+                            <NavLink href="/meals">Meals</NavLink>
                         </li>
                         <li>
-                            <Link 
-                                className={path === '/community' ? classes.active : undefined}
-                                href="/community"
-                            >
-                                Community
-                            </Link>
+                            <NavLink href="/community">Community</NavLink>
                         </li>
                     </ul>
                 </nav>
