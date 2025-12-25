@@ -1,11 +1,15 @@
 import classes from './page.module.css';
 import Image from 'next/image';
 import { getMealBySlug } from '@/lib/meals';
+import { notFound } from 'next/navigation';
 
 export default function MealDetailsPage({params}) {
     const meal =  getMealBySlug(params.mealslug);
     meal.instructions = meal.instructions.replace(/\n/g, '<br/>');// Convert newlines to <br/> tags
 
+    if (!meal) {
+        notFound();
+    }
     return (
         <>
             <header className={classes.header}>
