@@ -3,6 +3,19 @@ import Image from 'next/image';
 import { getMealBySlug } from '@/lib/meals';
 import { notFound } from 'next/navigation';
 
+export async function generateMetadata({ params }) {
+    const meal = await getMealBySlug(params.mealslug);
+
+    if (!meal) {
+        notFound();
+    }
+
+    return {
+        title: meal.title,
+        description: meal.summary
+    };
+}
+
 export default function MealDetailsPage({params}) {
     const meal =  getMealBySlug(params.mealslug);
     meal.instructions = meal.instructions.replace(/\n/g, '<br/>');// Convert newlines to <br/> tags
